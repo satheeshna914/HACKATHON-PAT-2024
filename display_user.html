@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Users</title>
+    <link rel="stylesheet" href="display.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registered Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- User data will be dynamically populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Function to display registered users
+        function displayRegisteredUsers() {
+            var users = JSON.parse(localStorage.getItem("registeredUsers")) || []; // Get registered users from localStorage
+            var tableBody = document.getElementById("userTableBody");
+
+            // Clear existing table rows
+            tableBody.innerHTML = "";
+
+            // Add user data to table
+            users.forEach(function(user) {
+                var row = "<tr><td>" + user.name + "</td><td>" + user.phone + "</td><td>" + user.email + "</td></tr>";
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Call the function to display registered users when the page loads
+        window.onload = function() {
+            displayRegisteredUsers();
+        };
+    </script>
+</body>
+</html>

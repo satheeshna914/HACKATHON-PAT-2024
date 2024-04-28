@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login-mm.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <span id="email-error" class="error-message"></span>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <span id="password-error" class="error-message"></span>
+            </p>
+            <p>
+                <input type="submit" value="Login">
+            </p>
+        </form>
+    </div>
+
+    <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get user input
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // Validate email
+    const emailError = document.getElementById("email-error");
+    if (!validateEmail(email)) {
+        emailError.textContent = "Please enter a valid email address.";
+        return;
+    } else {
+        emailError.textContent = "";
+    }
+
+    // Validate password
+    const passwordError = document.getElementById("password-error");
+    if (password.trim() === "") {
+        passwordError.textContent = "Please enter your password.";
+        return;
+    } else {
+        passwordError.textContent = "";
+    }
+
+    // Check if email and password are correct (dummy check)
+    if (email === "user@example.com" && password === "password") {
+        // Redirect to index.html
+        window.location.href = "index.html";
+    } else {
+        // Show error message
+        alert("Invalid email or password. Please try again.");
+    }
+});
+
+// Function to validate email address
+function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+    </script>
+</body>
+</html>

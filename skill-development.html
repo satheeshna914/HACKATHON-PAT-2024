@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Development</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px;
+        }
+        .program {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        /* Pop-up styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Skill Development Programs</h1>
+    </header>
+    <div class="container">
+        <!-- Skill Development Programs Section -->
+        <section id="skill-development">
+            <h2>Skill Development Programs</h2>
+            <div id="programs-list">
+                <!-- Programs will be dynamically added here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Registration and Enroll Pop-up -->
+    <div id="registration-popup" class="popup">
+        <h2>Registration</h2>
+        <!-- Registration form can be added here -->
+        <p>Enter your details to register for the course.</p>
+        <button onclick="closePopup('registration-popup')">Close</button>
+    </div>
+
+
+    <!-- JavaScript for fetching and displaying programs -->
+    <script>
+        // Example data of skill development programs
+        const programs = [
+            { 
+                name: "Web Development Bootcamp",
+                category: "Programming",
+                description: "A comprehensive bootcamp covering HTML, CSS, and JavaScript.",
+                schedule: "Every Monday and Wednesday, 6-8 PM",
+                registration: "<button onclick='openPopup(\"registration-popup\")'>Register here</button>",
+            
+            },
+            { 
+                name: "Digital Marketing Course",
+                category: "Marketing",
+                description: "Learn digital marketing strategies and tools for business growth.",
+                schedule: "Weekend classes: Saturday & Sunday, 10 AM - 1 PM",
+                registration: "<button onclick='openPopup(\"registration-popup\")'>Register here</button>",
+    
+            }
+            // Add more programs as needed
+        ];
+
+        // Function to display programs on the webpage
+        function displayPrograms() {
+            const programsList = document.getElementById('programs-list');
+            programs.forEach((program, index) => {
+                const programElement = document.createElement('div');
+                programElement.classList.add('program');
+                programElement.innerHTML = `
+                    <h3>${program.name}</h3>
+                    <p><strong>Category:</strong> ${program.category}</p>
+                    <p>${program.description}</p>
+                    <p><strong>Schedule:</strong> ${program.schedule}</p>
+                    <p>${program.registration}</p>
+                    <p>${program.enroll}</p>
+                    <p id="enrolled-${index}" style="display: ${program.enrolled ? 'block' : 'none'}">You are enrolled for this course.</p>
+                `;
+                programsList.appendChild(programElement);
+            });
+        }
+
+        // Function to open pop-up
+        function openPopup(popupId) {
+            document.getElementById(popupId).style.display = "block";
+        }
+
+        // Function to close pop-up
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = "none";
+        }
+
+        // Call the function to display programs when the page loads
+        window.onload = displayPrograms;
+    </script>
+</body>
+</html>
